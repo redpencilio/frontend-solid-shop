@@ -19,6 +19,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
+      - name: Reconfigure git to use HTTP authentication to fix forked dependencies
+        run: git config --global url."https://github.com/".insteadOf ssh://git@github.com/
       - name: Install Node
         uses: actions/setup-node@v3
         with:
@@ -36,6 +38,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
+      - name: Reconfigure git to use HTTP authentication to fix forked dependencies
+        run: git config --global url."https://github.com/".insteadOf ssh://git@github.com/
       - name: Install Node
         uses: actions/setup-node@v3
         with:
