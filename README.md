@@ -1,7 +1,6 @@
 # app-solid-shop
 
-This README outlines the details of collaborating on this Ember application.
-A short introduction of this app could easily go here.
+The Solid Shop is a user-powered shopping ecosystem by use of SOLID PODs.
 
 ## Prerequisites
 
