@@ -12,15 +12,19 @@ module('Integration | Component | nav-bar', function (hooks) {
 
     await render(hbs`<NavBar />`);
 
-    assert.dom(this.element).hasText('');
+    assert
+      .dom(this.element)
+      .hasText('The Solid Shop Home Your products Profile');
 
     // Template block usage:
     await render(hbs`
       <NavBar>
-        template block text
+        The Solid Shop Home Your products Profile
       </NavBar>
     `);
 
-    assert.dom(this.element).hasText('template block text');
+    assert
+      .dom(this.element)
+      .hasText('The Solid Shop Home Your products Profile');
   });
 });

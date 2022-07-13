@@ -1,11 +1,19 @@
 {{page-title "Products"}}
 
 <div class="container">
-  <ul>
+  <div class="row">
     {{#each this.model as |product|}}
-      {{product.name}}
+      <div class="col-md-4">
+        <div class="card overview-card">
+          <div class="card-body">
+            <h5 class="card-title">{{product.name}}</h5>
+            <p class="card-text">{{product.description}}</p>
+            <a class="btn btn-primary disabled" href="#" role="button" aria-disabled="true">Go somewhere</a>
+          </div>
+        </div>
+      </div>
     {{/each}}
-  </ul>
+  </div>
 </div>
 
 

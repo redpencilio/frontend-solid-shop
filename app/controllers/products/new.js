@@ -9,13 +9,17 @@ export default class ProductsNewController extends Controller {
   @action
   async save(event) {
     event.preventDefault();
-    console.log('save', this.name, this.description);
+
     this.store.create('product', {
       name: this.name,
       description: this.description,
     });
 
     await this.store.persist();
-    this.router.transitionTo("products.index");
+
+    // Go back to the overview of all products and clear form input.
+    this.name = '';
+    this.description = '';
+    this.router.transitionTo('products.index');
   }
 }
