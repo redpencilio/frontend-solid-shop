@@ -8,7 +8,6 @@ export default class ProductsRoute extends Route {
   async model() {
     await this.solidAuth.ensureLogin();
     await this.store.fetchGraphForType('product');
-    //return this.store.all('product');
-    return [];
+    return this.store.all('product');
   }
 }

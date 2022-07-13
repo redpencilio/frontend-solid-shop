@@ -1,6 +1,15 @@
 {{page-title "Products"}}
 
 <div class="container">
+  <ul>
+    {{#each this.model as |product|}}
+      {{product.name}}
+    {{/each}}
+  </ul>
+</div>
+
+
+<div class="container">
   <LinkTo @route="products.new" class="btn btn-success">Add product</LinkTo>
 </div>
 {{outlet}}
