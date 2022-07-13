@@ -1,0 +1,16 @@
+{{page-title "New"}}
+
+<form {{on "submit" this.save}} class="container">
+  <h1>Create new product</h1>
+  <div class="mb-3">
+    <label for="name" class="form-label">Name</label>
+    <Input @type="text" class="form-control" id="name" name="name" placeholder="my product" @value={{this.name}} />
+  </div>
+  <div class="mb-3">
+    <label for="description" class="form-label">Description</label>
+    <Input @type="text" class="form-control" id="description" name="description" placeholder="my product description"
+           @value={{this.description}} />
+  </div>
+  <button type="submit" class="btn btn-success">Save</button>
+</form>
+{{outlet}}
