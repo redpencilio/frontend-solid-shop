@@ -1,5 +1,5 @@
 import { module, test } from 'qunit';
-import { setupTest } from 'app-solid-shop/tests/helpers';
+import { setupTest } from 'frontend-solid-shop/tests/helpers';
 
 module('Unit | Route | profile', function (hooks) {
   setupTest(hooks);

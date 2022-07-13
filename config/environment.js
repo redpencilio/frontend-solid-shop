@@ -2,7 +2,7 @@
 
 module.exports = function (environment) {
   let ENV = {
-    modulePrefix: 'app-solid-shop',
+    modulePrefix: 'frontend-solid-shop',
     environment,
     rootURL: '/',
     locationType: 'history',

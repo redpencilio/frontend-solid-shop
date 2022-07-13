@@ -1,8 +1,8 @@
 {
-  "name": "app-solid-shop",
+  "name": "frontend-solid-shop",
   "version": "0.0.0",
   "private": true,
-  "description": "Small description for app-solid-shop goes here",
+  "description": "User-powered shopping ecosystem by use of SOLID PODs",
   "repository": "",
   "license": "MIT",
   "author": "",

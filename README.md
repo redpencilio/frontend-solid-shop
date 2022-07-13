@@ -1,4 +1,4 @@
-# app-solid-shop
+# frontend-solid-shop
 
 The Solid Shop is a user-powered shopping ecosystem by use of SOLID PODs.
 
@@ -13,8 +13,8 @@ You will need the following things properly installed on your computer.
 
 ## Installation
 
-* `git clone <repository-url>` this repository
-* `cd app-solid-shop`
+* `git clone git@github.com:redpencilio/frontend-solid-shop.git` this repository
+* `cd frontend-solid-shop`
 * `npm install`
 
 ## Running / Development

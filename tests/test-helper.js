@@ -1,5 +1,5 @@
-import Application from 'app-solid-shop/app';
-import config from 'app-solid-shop/config/environment';
+import Application from 'frontend-solid-shop/app';
+import config from 'frontend-solid-shop/config/environment';
 import * as QUnit from 'qunit';
 import { setApplication } from '@ember/test-helpers';
 import { setup } from 'qunit-dom';
