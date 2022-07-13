@@ -7,14 +7,14 @@ export default class ProductsNewController extends Controller {
   @service store;
 
   @action
-  save() {
+  async save() {
     console.log('save', this.name, this.description);
     this.store.create('product', {
       name: this.name,
       description: this.description,
     });
 
-    this.store.persist();
-    this.router.refresh();
+    await this.store.persist();
+    this.router.transitionTo("products.index");
   }
 }
