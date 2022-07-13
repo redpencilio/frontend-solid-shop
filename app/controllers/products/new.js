@@ -7,7 +7,8 @@ export default class ProductsNewController extends Controller {
   @service store;
 
   @action
-  async save() {
+  async save(event) {
+    event.preventDefault();
     console.log('save', this.name, this.description);
     this.store.create('product', {
       name: this.name,
