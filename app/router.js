@@ -13,4 +13,8 @@ Router.map(function () {
   this.route('products', function () {
     this.route('new');
   });
+
+  this.route('offerings', function () {
+    this.route('new');
+  });
 });
