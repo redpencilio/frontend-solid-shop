@@ -19,7 +19,8 @@ You will need the following things properly installed on your computer.
 
 ## Running / Development
 
-* `ember serve`
+* `ember serve --proxy http://127.0.0.1:8080` (`8080` being the port of mu-identifier)
+* `docker-compose up -d` to start the related services
 * Visit your app at [http://localhost:4200](http://localhost:4200).
 * Visit your tests at [http://localhost:4200/tests](http://localhost:4200/tests).
 
