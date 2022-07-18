@@ -20,11 +20,15 @@ export default class ProductsNewController extends Controller {
       hasCurrency: '€',
       hasCurrencyValue: this.price,
     });
-    this.store.create('offering', {
+    const offering = this.store.create('offering', {
       name: this.name,
       description: this.description,
       includes: product,
       hasPriceSpecification: priceSpecification,
+    });
+    this.store.create('business-entity', {
+      legalName: this.legalName,
+      offers: offering,
     });
 
     await this.store.persist();
