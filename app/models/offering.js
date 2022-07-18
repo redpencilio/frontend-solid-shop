@@ -32,12 +32,4 @@ export default class Offering extends SemanticModel {
     inverseProperty: 'offering',
   })
   hasPriceSpecification; // gr:PriceSpecification
-
-  @belongsTo({
-    model: 'quantitative-value-float',
-    predicate: 'http://purl.org/goodrelations/v1#hasInventoryLevel',
-    inverse: false,
-    inverseProperty: 'offering',
-  })
-  hasInventoryLevel; // gr:QuantitativeValueFloat
 }
