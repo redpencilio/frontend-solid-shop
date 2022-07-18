@@ -20,6 +20,10 @@
              @value={{this.price}} aria-describedby="price-euro" step="0.01" />
     </div>
   </div>
+  <div class="mb-3">
+    <label for="legalName" class="form-label">Legal name seller</label>
+    <Input @type="text" class="form-control" id="legalName" name="legalName" placeholder="your name" @value={{this.legalName}} />
+  </div>
   <button type="submit" class="btn btn-success">Save</button>
 </form>
 {{outlet}}

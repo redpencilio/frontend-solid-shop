@@ -32,4 +32,12 @@ export default class Offering extends SemanticModel {
     inverseProperty: 'offering',
   })
   hasPriceSpecification; // gr:PriceSpecification
+
+  @belongsTo({
+    model: 'business-entity',
+    predicate: 'http://purl.org/goodrelations/v1#offers',
+    inverse: true,
+    inverseProperty: 'offers',
+  })
+  seller; // gr:BusinessEntity
 }
