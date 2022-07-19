@@ -1,0 +1,19 @@
+<div class="container">
+  <div class="row">
+    {{#each this.model as |offering|}}
+      <div class="col-md-4">
+        <div class="card overview-card">
+          <div class="card-body">
+            <h5 class="card-title">{{offering.name.value}}</h5>
+            <h6 class="card-subtitle mb-2 text-muted">{{offering.currency.value}} {{offering.currencyValue.value}}</h6>
+            <p class="card-text">{{offering.description.value}}</p>
+            <a class="btn btn-primary disabled" href="#" role="button" aria-disabled="true">Buy!</a>
+          </div>
+          <div class="card-footer text-muted">
+            Offered by {{offering.seller.value}}
+          </div>
+        </div>
+      </div>
+    {{/each}}
+  </div>
+</div>
