@@ -1,5 +1,26 @@
 <div class="container">
   <div class="row">
+    <div class="col-md-4">
+      <div class="mb-3">
+        <label for="name" class="form-label">Name</label>
+        <Input @type="text" class="form-control" id="name" name="name" placeholder="my product" @value={{this.name}} />
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="mb-3">
+        <label for="description" class="form-label">Description</label>
+        <Input @type="text" class="form-control" id="description" name="description"
+               placeholder="my product description" @value={{this.description}} />
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="mb-3">
+        <label for="seller" class="form-label">Seller</label>
+        <Input @type="text" class="form-control" id="seller" name="seller" placeholder="seller legal name"
+               @value={{this.seller}} />
+      </div>
+    </div>
+
     {{#each this.model as |offering|}}
       <div class="col-md-4">
         <div class="card overview-card">
