@@ -15,9 +15,11 @@ export default class IndexRoute extends Route {
 
   async model({ name, description, seller }) {
     const result = await fetch(
-      `/query?name=${name || ''}&description=${description || ''}&seller=${
-        seller || ''
-      }`,
+      `/query?name=${encodeURIComponent(
+        name || ''
+      )}&description=${encodeURIComponent(
+        description || ''
+      )}&seller=${encodeURIComponent(seller || '')}`,
       {
         method: 'GET',
         headers: {
