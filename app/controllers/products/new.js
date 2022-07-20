@@ -5,6 +5,7 @@ import Controller from '@ember/controller';
 export default class ProductsNewController extends Controller {
   @service router;
   @service store;
+  @service solidAuth;
 
   @action
   async save(event) {
@@ -28,6 +29,7 @@ export default class ProductsNewController extends Controller {
     });
     this.store.create('business-entity', {
       legalName: this.legalName,
+      webId: this.solidAuth.webId,
       offers: offering,
     });
 

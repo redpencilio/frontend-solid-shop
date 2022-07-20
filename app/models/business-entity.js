@@ -14,6 +14,9 @@ export default class BusinessEntity extends SemanticModel {
   @string()
   legalName;
 
+  @string({ predicate: 'http://purl.org/goodrelations/v1#description' })
+  webId;
+
   @belongsTo({
     model: 'offering',
     predicate: 'http://purl.org/goodrelations/v1#offers',
