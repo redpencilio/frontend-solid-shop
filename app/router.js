@@ -17,4 +17,5 @@ Router.map(function () {
   this.route('offerings', function () {
     this.route('new');
   });
+  this.route('sales', function () {});
 });

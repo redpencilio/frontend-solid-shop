@@ -1,0 +1,20 @@
+{{page-title "Sales"}}
+<div class="container">
+  <div class="row">
+    {{#each this.model as |sale|}}
+      <div class="col-md-4">
+        <div class="card overview-card">
+          <div class="card-body">
+            <h5 class="card-title">{{sale.offerName.value}}</h5>
+            <p class="card-text">{{sale.offerDescription.value}}</p>
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">{{sale.offerCurrency.value}} {{sale.offerPrice.value}}</li>
+            <li class="list-group-item"><b>Customer</b> {{sale.customerWebId.value}}</li>
+            <li class="list-group-item">{{format-date sale.orderDate.value}}</li>
+          </ul>
+        </div>
+      </div>
+    {{/each}}
+  </div>
+</div>

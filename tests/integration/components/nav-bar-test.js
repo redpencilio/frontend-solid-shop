@@ -14,17 +14,21 @@ module('Integration | Component | nav-bar', function (hooks) {
 
     assert
       .dom(this.element)
-      .hasText('The Solid Shop Home Your products Your offerings Profile');
+      .hasText(
+        'The Solid Shop Home Your products Your offerings Your sales Profile'
+      );
 
     // Template block usage:
     await render(hbs`
       <NavBar>
-        The Solid Shop Home Your products Your offerings Profile
+        The Solid Shop Home Your products Your offerings Your sales Profile
       </NavBar>
     `);
 
     assert
       .dom(this.element)
-      .hasText('The Solid Shop Home Your products Your offerings Profile');
+      .hasText(
+        'The Solid Shop Home Your products Your offerings Your sales Profile'
+      );
   });
 });
