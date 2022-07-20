@@ -1,3 +1,4 @@
+import { inject as service } from '@ember/service';
 import Route from '@ember/routing/route';
 
 export default class IndexRoute extends Route {
@@ -13,7 +14,11 @@ export default class IndexRoute extends Route {
     },
   };
 
+  @service solidAuth;
+
   async model({ name, description, seller }) {
+    await this.solidAuth.ensureLogin();
+
     const result = await fetch(
       `/query?name=${encodeURIComponent(
         name || ''

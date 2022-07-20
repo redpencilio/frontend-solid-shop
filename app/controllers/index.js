@@ -24,13 +24,36 @@ export default class IndexController extends Controller {
       const encodedValue = encodeURIComponent(body[property]);
       formBody.push(`${encodedKey}=${encodedValue}`);
     }
-    await fetch(`/buy`, {
+    const response = await fetch(`/buy`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
       },
       body: formBody.join('&'),
     });
+    const result = await response.json();
+
+    if (result.orderUUID) {
+      // MOCK: directly send payment confirmation callback.
+      const body = {
+        orderId: result.orderUUID,
+        buyerPod: this.solidAuth.podBase,
+        sellerPod: sellerPod,
+      };
+      const formBody = [];
+      for (const property in body) {
+        const encodedKey = encodeURIComponent(property);
+        const encodedValue = encodeURIComponent(body[property]);
+        formBody.push(`${encodedKey}=${encodedValue}`);
+      }
+      await fetch(`/buy/callback`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+        },
+        body: formBody.join('&'),
+      });
+    }
 
     console.log(offeringId);
   }
