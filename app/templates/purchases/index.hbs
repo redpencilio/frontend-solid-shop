@@ -1,0 +1,20 @@
+{{page-title "Purchases"}}
+<div class="container">
+  <div class="row">
+    {{#each this.model as |purchase|}}
+      <div class="col-md-4">
+        <div class="card overview-card">
+          <div class="card-body">
+            <h5 class="card-title">{{purchase.offerName.value}}</h5>
+            <p class="card-text">{{purchase.offerDescription.value}}</p>
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">{{purchase.offerCurrency.value}} {{purchase.offerPrice.value}}</li>
+            <li class="list-group-item"><b>Merchant</b> {{purchase.sellerWebId.value}}</li>
+            <li class="list-group-item">{{format-date purchase.orderDate.value}}</li>
+          </ul>
+        </div>
+      </div>
+    {{/each}}
+  </div>
+</div>
