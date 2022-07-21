@@ -32,6 +32,8 @@ services:
       - "8888:80"
     environment:
       NODE_ENV: "development"
+      MOLLIE_REDIRECT_URL: "https://your-frontend/checkout/success"
+      MOLLIE_BASE_WEBHOOK_URL: "https://your-frontend/buy/callback"
     links:
       - database:database
     volumes:

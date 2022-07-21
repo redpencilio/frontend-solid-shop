@@ -9,7 +9,7 @@ export default class IndexController extends Controller {
   @service solidAuth;
 
   @action
-  async buy(offeringId, sellerPod, event) {
+  buy(offeringId, sellerPod, event) {
     event.preventDefault();
 
     const body = {
@@ -20,41 +20,17 @@ export default class IndexController extends Controller {
     };
     const formBody = [];
     for (const property in body) {
-      const encodedKey = encodeURIComponent(property);
-      const encodedValue = encodeURIComponent(body[property]);
-      formBody.push(`${encodedKey}=${encodedValue}`);
+      const encodedKey = property;
+      const encodedValue = body[property];
+      formBody.push(`${encodedKey}" value="${encodedValue}`);
     }
-    const response = await fetch(`/buy`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
-      },
-      body: formBody.join('&'),
-    });
-    const result = await response.json();
-
-    if (result.orderUUID) {
-      // MOCK: directly send payment confirmation callback.
-      const body = {
-        orderId: result.orderUUID,
-        buyerPod: this.solidAuth.podBase,
-        sellerPod: sellerPod,
-      };
-      const formBody = [];
-      for (const property in body) {
-        const encodedKey = encodeURIComponent(property);
-        const encodedValue = encodeURIComponent(body[property]);
-        formBody.push(`${encodedKey}=${encodedValue}`);
-      }
-      await fetch(`/buy/callback`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
-        },
-        body: formBody.join('&'),
-      });
-    }
-
-    console.log(offeringId);
+    const form = document.createElement('form');
+    form.method = 'POST';
+    form.action = '/buy';
+    form.innerHTML = `<input type="hidden" name="${formBody.join(
+      '" /> <input type="hidden" name="'
+    )}" />`;
+    document.body.appendChild(form);
+    form.submit();
   }
 }
