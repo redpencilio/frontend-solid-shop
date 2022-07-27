@@ -42,6 +42,7 @@ services:
       NODE_ENV: "development"
       MOLLIE_REDIRECT_URL: "https://your-frontend/checkout/success"
       MOLLIE_BASE_WEBHOOK_URL: "https://your-frontend/buy/callback"
+      BROKER_WEB_ID: "https://broker.mu/"
     links:
       - database:database
     volumes:
