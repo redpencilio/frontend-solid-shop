@@ -1,23 +1,17 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-7">
       <div class="mb-3">
-        <label for="name" class="form-label">Name</label>
-        <Input @type="text" class="form-control" id="name" name="name" placeholder="my product" @value={{this.name}} />
+        <label for="query" class="form-label">Search</label>
+        <Input @type="text" class="form-control" id="query" name="query" placeholder="my product" @value={{this.query}} />
       </div>
     </div>
-    <div class="col-md-4">
-      <div class="mb-3">
-        <label for="description" class="form-label">Description</label>
-        <Input @type="text" class="form-control" id="description" name="description"
-               placeholder="my product description" @value={{this.description}} />
-      </div>
-    </div>
-    <div class="col-md-4">
-      <div class="mb-3">
-        <label for="seller" class="form-label">Seller</label>
-        <Input @type="text" class="form-control" id="seller" name="seller" placeholder="seller legal name"
-               @value={{this.seller}} />
+    <div class="col-md-5">
+      <label for="price" class="form-label" id="priceLabel">Price</label>
+      <div class="input-group mb-3">
+        <Input @type="number" class="form-control" name="price" min="0" max="{{this.priceMax}}" aria-labelledby="priceLabel" @value={{this.priceMin}} {{ on "change" this.updatedMin }} />
+        <span class="input-group-text"> - </span>
+        <Input @type="number" class="form-control" min="{{this.priceMin}}" aria-labelledby="priceLabel" @value={{this.priceMax}} {{ on "change" this.updatedMax }} />
       </div>
     </div>
 
@@ -25,13 +19,13 @@
       <div class="col-md-4">
         <div class="card overview-card">
           <div class="card-body">
-            <h5 class="card-title">{{offering.name.value}}</h5>
-            <h6 class="card-subtitle mb-2 text-muted">{{offering.currency.value}} {{offering.currencyValue.value}}</h6>
-            <p class="card-text">{{offering.description.value}}</p>
-            <a class="btn btn-primary" href="#" role="button" {{ on "click" (fn this.buy offering.offering.value offering.pod.value)}}>Buy!</a>
+            <h5 class="card-title">{{offering.attributes.name}}</h5>
+            <h6 class="card-subtitle mb-2 text-muted">{{offering.attributes.price.priceCurrency}} {{offering.attributes.price.price}}</h6>
+            <p class="card-text">{{offering.attributes.description}}</p>
+            <a class="btn btn-primary" href="#" role="button" {{ on "click" (fn this.buy offering.attributes.price.price offering.attributes.pod)}}>Buy!</a>
           </div>
           <div class="card-footer text-muted">
-            Offered by <a href="{{offering.sellerWebId.value}}">{{offering.seller.value}}</a>
+            Offered by <a href="{{offering.attributes.seller.webId}}">{{offering.attributes.seller.legalName}}</a>
           </div>
         </div>
       </div>

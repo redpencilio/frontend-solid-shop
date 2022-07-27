@@ -6,6 +6,7 @@ services:
     environment:
       SESSION_COOKIE_SECURE: "on"
       DEFAULT_ACCESS_CONTROL_ALLOW_ORIGIN_HEADER: "*"
+      DEFAULT_MU_AUTH_ALLOWED_GROUPS_HEADER: "[{\"variables\":[],\"name\":\"clean\"},{\"variables\":[],\"name\":\"public\"}]"
     links:
       - dispatcher:dispatcher
     ports:
@@ -14,9 +15,16 @@ services:
     image: semtech/mu-dispatcher:2.0.0
     links:
       - search:search
+      - mu-search:mu-search
     volumes:
       - ./config/dispatcher:/config
   database:
+    image: semtech/mu-authorization:0.6.0-beta.5
+    environment:
+      MU_SPARQL_ENDPOINT: "http://triplestore:8890/sparql"
+    volumes:
+      - ./config/authorization:/config
+  triplestore:
     image: redpencil/virtuoso:1.0.0
     environment:
       SPARQL_UPDATE: "true"
@@ -38,3 +46,24 @@ services:
       - database:database
     volumes:
       - ../solid-shop-search-service/:/app/
+  mu-search:
+    # image: semtech/mu-search:0.8.0-beta.3
+    build:
+        context: ../mu-search
+        dockerfile: Dockerfile
+    links:
+      - database:database
+      - elasticsearch:elasticsearch
+    volumes:
+      - ./config/search:/config
+  elasticsearch:
+    image: semtech/mu-search-elastic-backend:1.0.1
+    volumes:
+      - ./data/elasticsearch/:/usr/share/elasticsearch/data
+      - ./config/elasticsearch/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
+    environment:
+      - discovery.type=single-node
+  deltanotifier:
+    image: semtech/mu-delta-notifier
+    volumes:
+      - ./config/delta:/config

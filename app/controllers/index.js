@@ -1,9 +1,13 @@
 import { action } from '@ember/object';
 import { inject as service } from '@ember/service';
 import Controller from '@ember/controller';
+import { tracked } from '@glimmer/tracking';
 
 export default class IndexController extends Controller {
-  queryParams = ['name', 'description', 'seller'];
+  queryParams = ['query', 'priceMin', 'priceMax'];
+
+  @tracked priceMin = 0;
+  @tracked priceMax = 3000;
 
   @service router;
   @service solidAuth;
@@ -32,5 +36,19 @@ export default class IndexController extends Controller {
     )}" />`;
     document.body.appendChild(form);
     form.submit();
+  }
+
+  @action
+  updatedMin() {
+    if (this.priceMin > this.priceMax) {
+      this.priceMin = this.priceMax;
+    }
+  }
+
+  @action
+  updatedMax() {
+    if (this.priceMax < this.priceMin) {
+      this.priceMax = this.priceMin;
+    }
   }
 }

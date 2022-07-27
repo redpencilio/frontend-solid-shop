@@ -3,28 +3,26 @@ import Route from '@ember/routing/route';
 
 export default class IndexRoute extends Route {
   queryParams = {
-    name: {
+    query: {
       refreshModel: true,
     },
-    description: {
+    priceMin: {
       refreshModel: true,
     },
-    seller: {
+    priceMax: {
       refreshModel: true,
     },
   };
 
   @service solidAuth;
 
-  async model({ name, description, seller }) {
+  async model({ query, priceMin, priceMax }) {
     await this.solidAuth.ensureLogin();
 
     const result = await fetch(
-      `/query?name=${encodeURIComponent(
-        name || ''
-      )}&description=${encodeURIComponent(
-        description || ''
-      )}&seller=${encodeURIComponent(seller || '')}`,
+      `/search/offerings/search?filter[:gte,lte:price.price]=${priceMin},${priceMax}${
+        query ? `&filter[:fuzzy:_all]=${encodeURIComponent(query)}` : ''
+      }`,
       {
         method: 'GET',
         headers: {
@@ -33,6 +31,6 @@ export default class IndexRoute extends Route {
       }
     );
     const json = await result.json();
-    return json.results.bindings;
+    return json.data;
   }
 }
