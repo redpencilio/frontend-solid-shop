@@ -18,7 +18,7 @@ export default class ProductsNewController extends Controller {
 
     // Immediately add a new offering for the product.
     const priceSpecification = this.store.create('price-specification', {
-      hasCurrency: '€',
+      hasCurrency: 'EUR',
       hasCurrencyValue: this.price,
     });
     const offering = this.store.create('offering', {

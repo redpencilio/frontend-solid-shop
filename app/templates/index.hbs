@@ -20,9 +20,9 @@
         <div class="card overview-card">
           <div class="card-body">
             <h5 class="card-title">{{offering.attributes.name}}</h5>
-            <h6 class="card-subtitle mb-2 text-muted">{{offering.attributes.price.priceCurrency}} {{offering.attributes.price.price}}</h6>
+            <h6 class="card-subtitle mb-2 text-muted">{{offering.attributes.price.price}} {{offering.attributes.price.priceCurrency}}</h6>
             <p class="card-text">{{offering.attributes.description}}</p>
-            <a class="btn btn-primary" href="#" role="button" {{ on "click" (fn this.buy offering.attributes.price.price offering.attributes.pod)}}>Buy!</a>
+            <a class="btn btn-primary" href="#" role="button" {{ on "click" (fn this.buy offering.attributes.uri offering.attributes.pod)}}>Buy!</a>
           </div>
           <div class="card-footer text-muted">
             Offered by <a href="{{offering.attributes.seller.webId}}">{{offering.attributes.seller.legalName}}</a>
