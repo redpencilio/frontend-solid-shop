@@ -39,6 +39,7 @@ export default class ProductsNewController extends Controller {
     this.name = '';
     this.description = '';
     this.price = '';
+    this.legalName = '';
     this.router.transitionTo('products.index');
   }
 }
