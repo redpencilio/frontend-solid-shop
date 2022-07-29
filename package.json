@@ -1,11 +1,13 @@
 {
   "name": "frontend-solid-shop",
   "version": "0.0.0",
-  "private": true,
   "description": "User-powered shopping ecosystem by use of SOLID PODs",
-  "repository": "",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/redpencilio/frontend-solid-shop.git"
+  },
   "license": "MIT",
-  "author": "",
+  "author": "Ieben Smessaert",
   "directories": {
     "doc": "doc",
     "test": "tests"

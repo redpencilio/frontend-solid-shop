@@ -39,6 +39,10 @@ defmodule Dispatcher do
     Proxy.forward conn, path, "http://search/purchases/"
   end
 
+  match "/payments/*path" do
+    Proxy.forward conn, path, "http://payments/payments/"
+  end
+
   get "/search/*path", @json do
     Proxy.forward conn, path, "http://mu-search/"
   end

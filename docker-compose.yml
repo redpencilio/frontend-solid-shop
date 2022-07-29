@@ -34,14 +34,26 @@ services:
     volumes:
       - ./data/db:/data
       - ./config/virtuoso/virtuoso.ini:/data/virtuoso.ini
+  payments:
+    # image: madnificent/mu-mollie-payment-service
+    build:
+      context: ../mollie-payment-service
+      dockerfile: Dockerfile
+    links:
+      - database:database
+    environment:
+      MOLLIE_API_KEY: "your mollie api key"
+      MOLLIE_REDIRECT_URL: "http://frontend/checkout/success"
+      MOLLIE_BASE_WEBHOOK_URL: "http://backend/payments/callback"
+      BACKEND_CALLBACK_HOSTNAME: "search"
+      BACKEND_CALLBACK_PORT: "80"
+      BACKEND_CALLBACK_PATH: "/buy/callback"
   search:
     image: semtech/mu-javascript-template
     ports:
       - "8888:80"
     environment:
       NODE_ENV: "development"
-      MOLLIE_REDIRECT_URL: "https://your-frontend/checkout/success"
-      MOLLIE_BASE_WEBHOOK_URL: "https://your-frontend/buy/callback"
       BROKER_WEB_ID: "https://broker.mu/"
     links:
       - database:database
