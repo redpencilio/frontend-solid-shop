@@ -1,0 +1,43 @@
+{{page-title "Edit"}}
+<form {{on "submit" this.save}} class="container">
+  <h1>Edit {{this.model.offering.name}}</h1>
+  <div class="mb-3">
+    <label for="name" class="form-label">Name</label>
+    <Input @type="text" class="form-control" id="name" name="name" placeholder="my product"
+           @value={{this.model.offering.name}} />
+  </div>
+  <div class="mb-3">
+    <label for="description" class="form-label">Description</label>
+    <Input @type="text" class="form-control" id="description" name="description" placeholder="my product description"
+           @value={{this.model.offering.description}} />
+  </div>
+
+  <div class="mb-3">
+    <label for="price" class="form-label">Price</label>
+    <div class="input-group">
+      <Input @type="number" class="form-control" id="price" name="price" placeholder="0.00"
+             @value={{this.model.offering.hasPriceSpecification.hasCurrencyValue}} aria-describedby="price-euro"
+             step="0.01" />
+      <span class="input-group-text" id="price-euro">EUR</span>
+    </div>
+  </div>
+  <div class="mb-3">
+    <label for="legalName" class="form-label">Legal namer seller</label>
+    <Input @type="text" class="form-control" id="legalName" name="legalName" placeholder="your name"
+           @value={{this.model.offering.seller.legalName}} />
+  </div>
+  <div class="mb-3">
+    <label for="product" class="form-label">Product</label>
+    <select class="form-select" id="product" name="product">
+      {{#each this.model.products as |product|}}
+        {{ product }}
+        {{#if (eq product.uri this.model.offering.includes.uri)}}
+          <option value="{{product.uri}}" selected>{{product.name}}</option>
+        {{else}}
+          <option value="{{product.uri}}">{{product.name}}</option>
+        {{/if}}
+      {{/each}}
+    </select>
+  </div>
+  <button type="submit" class="btn btn-success">Save</button>
+</form>

@@ -9,7 +9,7 @@
             <h5 class="card-title">{{offering.name}}</h5>
             <h6 class="card-subtitle mb-2 text-muted">{{offering.hasPriceSpecification.hasCurrencyValue}} {{offering.hasPriceSpecification.hasCurrency }}</h6>
             <p class="card-text">{{offering.description}}</p>
-            <a class="btn btn-primary disabled" href="#" role="button" aria-disabled="true">Go somewhere</a>
+            <LinkTo class="btn btn-primary" role="button" @route="offerings.edit" @model={{ offering.uri.value }}>Edit</LinkTo>
             <button type="button" class="btn btn-danger" {{ on "click" (fn this.removeOffering offering) }}>Delete</button>
           </div>
         </div>
