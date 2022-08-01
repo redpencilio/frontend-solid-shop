@@ -51,6 +51,7 @@
     "ember-solid": "github:redpencilio/ember-solid",
     "ember-source": "~4.5.0",
     "ember-template-lint": "^4.10.0",
+    "ember-truth-helpers": "^3.1.1",
     "ember-welcome-page": "^6.2.0",
     "eslint": "^7.32.0",
     "eslint-config-prettier": "^8.5.0",

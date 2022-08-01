@@ -16,6 +16,7 @@ Router.map(function () {
 
   this.route('offerings', function () {
     this.route('new');
+    this.route('edit', { path: ':id' });
   });
   this.route('sales', function () {});
   this.route('purchases', function () {});
