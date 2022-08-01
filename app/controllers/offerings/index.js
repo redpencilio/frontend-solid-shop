@@ -4,6 +4,7 @@ import Controller from '@ember/controller';
 
 export default class OfferingsIndexController extends Controller {
   @service solidAuth;
+  @service store;
 
   @action
   async sync(event) {
@@ -29,5 +30,19 @@ export default class OfferingsIndexController extends Controller {
 
     document.getElementById('sync-button').disabled = false;
     document.getElementById('sync-button').innerHTML = 'Sync your offerings';
+  }
+
+  @action
+  async removeOffering(offering, event) {
+    event.preventDefault();
+
+    event.target.disabled = true;
+    event.target.innerHTML = 'Removing...';
+
+    offering.destroy();
+    await this.store.persist();
+
+    // Remove record from model (UI) as well.
+    this.model.removeObject(offering);
   }
 }
