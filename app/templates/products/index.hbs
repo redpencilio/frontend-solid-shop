@@ -8,8 +8,10 @@
           <div class="card-body">
             <h5 class="card-title">{{product.name}}</h5>
             <p class="card-text">{{product.description}}</p>
-            <a class="btn btn-primary disabled" href="#" role="button" aria-disabled="true">Go somewhere</a>
-            <button type="button" class="btn btn-danger" {{ on "click" (fn this.removeProduct product) }}>Delete</button>
+            <LinkTo class="btn btn-primary" role="button" @route="products.edit" @model={{ product.uri.value }}>Edit
+            </LinkTo>
+            <button type="button" class="btn btn-danger" {{ on "click" (fn this.removeProduct product) }}>Delete
+            </button>
           </div>
         </div>
       </div>
