@@ -8,9 +8,9 @@
   {{#let "" as |provider|}}
     <li>
       <label>
-        <Input @value={{provider}} placeholder="https://your-own-pod-url.org/"/>
+        <Input @value={{this.provider}} placeholder="https://your-own-pod-url.org/"/>
       </label>
-      <button role="button" type="button" {{on "click" (fn this.login provider)}}>Custom Login</button>
+      <button role="button" type="button" {{on "click" (fn this.login this.provider)}}>Custom Login</button>
     </li>
   {{/let}}
 </ul>
