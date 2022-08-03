@@ -13,7 +13,7 @@ export default class LoginController extends Controller {
 
   @action
   login(provider) {
-    const options = { identityProvider: provider };
+    const options = { identityProvider: provider, clientName: 'Solid Shop' };
     if (this.from) {
       options.redirectUrl = this.from;
     }

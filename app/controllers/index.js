@@ -8,6 +8,7 @@ export default class IndexController extends Controller {
 
   @tracked priceMin = 0;
   @tracked priceMax = 3000;
+  @tracked error = null;
 
   @service router;
   @service solidAuth;
