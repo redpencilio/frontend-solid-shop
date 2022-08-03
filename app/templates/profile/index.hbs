@@ -1,8 +1,48 @@
 {{page-title "Profile"}}
-<form {{on "submit" this.save}} class="container">
-  <div class="mb-3">
-    <label for="mollieApiKey" class="form-label">Mollie API key</label>
-    <Input @type="text" class="form-control" id="mollieApiKey" name="mollieApiKey" placeholder="my mollie api key" @value={{this.mollieApiKey}} />
-  </div>
-  <button type="submit" class="btn btn-success" id="save-button">Save</button>
-</form>
+<div class="container">
+  <form {{on "submit" this.saveMollieKey}}>
+    <div class="mb-3">
+      <label for="mollieApiKey" class="form-label">Mollie API key</label>
+      <Input @type="text" class="form-control" id="mollieApiKey" name="mollieApiKey" placeholder="my mollie api key"
+             @value={{this.mollieApiKey}} />
+      <small>Only needed if you are selling stuff.</small>
+    </div>
+    <button type="submit" class="btn btn-success" id="save-key-button">Save</button>
+  </form>
+  <br>
+  <hr>
+  <p>
+    Click on the server brand of your Solid POD below to authenticate with the Identity Provider of your Solid POD.
+    This is needed so we can read from and write to your Solid POD to e.g. read your products and offerings and write
+    back the purchases and sales you have made.
+  </p>
+  <BsTab as |tab|>
+    <br>
+    <tab.pane @title="CSS">
+      {{#if this.success}}
+        <div class="alert alert-success">{{this.success}}</div>
+      {{/if}}
+      <form {{on "submit" this.loginCSS}}>
+        <div class="mb-3">
+          <label for="cssEmail" class="form-label">CSS Email</label>
+          <Input @type="email" class="form-control" id="cssEmail" name="cssEmail" placeholder="Your email"
+                 @value={{this.cssEmail}} />
+        </div>
+        <div class="mb-3">
+          <label for="cssPassword" class="form-label">CSS Password</label>
+          <Input @type="password" class="form-control" id="cssPassword" name="cssPassword" placeholder="Your password"
+                 @value={{this.cssPassword}} />
+        </div>
+        <div class="mb-3">
+          <label for="cssIDPURL" class="form-label">CSS IDP URL</label>
+          <Input @type="text" class="form-control" id="cssIDPURL" name="cssIDPURL" placeholder="Your IDP URL"
+                 @value={{this.cssIDPURL}} />
+        </div>
+        <button type="submit" class="btn btn-success" id="login-css-button">Login</button>
+      </form>
+    </tab.pane>
+    <tab.pane @title="ESS">
+      <p>Currently not supported yet, but will be added later.</p>
+    </tab.pane>
+  </BsTab>
+</div>

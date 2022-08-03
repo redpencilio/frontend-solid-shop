@@ -78,6 +78,33 @@ You can specify the application's Mollie API key via the `MOLLIE_API_KEY` enviro
 It will use this API key to handle payments if there is no Mollie API key specified for the seller in the triple store.  
 However, specifying a Mollie API key for the seller in the triple store (`?sellerWebId ext:mollieApiKey ?mollieApiKey`) will override the default API key, letting the buyer directly pay to the seller.
 
+## Authentication flow
+
+To be able to read and write to the specific resources in the user's POD, authentication and permissions to those resources are required.
+As there is no Solid spec for this yet at the time of writing, non-spec behavior is used from the supported servers.
+
+### CSS
+
+[Non-spec behavior of CSS.](https://communitysolidserver.github.io/CommunitySolidServer/4.0/client-credentials/)
+
+To authenticate once:
+- **user -> frontend**
+  - enters `email`, `password` and `IDP URL`
+- **frontend -> CSS IDP**
+  - sends `email`, `password` and `name='solid-shop'` to the CSS IDP at `${IDPURL}/idp/credentials`
+  - generates a token
+  - sends back the client id and client secret
+- **frontend -> search**
+  - sends `clientWebId`, `clientId`, `clientSecret`, `idpUrl` and `idpType='css'` to the search server at `/profile/credentials`
+  - saves the credentials to the triple store
+
+On reading from or writing to the user's POD:
+- **search -> CSS IDP**
+  - sends `clientId`, `clientSecret` to the CSS IDP at `${IDPURL}/.oidc/token`
+  - requests access token
+- **search -> user's POD**
+  - uses the access token to send authenticated requests to the user's POD
+
 ## Further Reading / Useful Links
 
 * [ember.js](https://emberjs.com/)
