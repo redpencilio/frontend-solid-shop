@@ -13,7 +13,10 @@ export default class OfferingsIndexController extends Controller {
     document.getElementById('sync-button').disabled = true;
     document.getElementById('sync-button').innerHTML = 'Syncing...';
 
-    const body = { pod: this.solidAuth.podBase, webId: this.solidAuth.webId };
+    const body = {
+      pod: await this.solidAuth.podBase,
+      webId: this.solidAuth.webId,
+    };
     const formBody = [];
     for (const property in body) {
       const encodedKey = encodeURIComponent(property);

@@ -5,7 +5,7 @@ import SemanticModel, {
 } from 'ember-solid/models/semantic-model';
 
 @solid({
-  defaultStorageLocation: '/private/tests/my-offerings.ttl',
+  defaultStorageLocation: 'private/tests/my-offerings.ttl',
   private: true,
   type: 'http://purl.org/goodrelations/v1#Offering',
   ns: 'http://purl.org/goodrelations/v1#',
