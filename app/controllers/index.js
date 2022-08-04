@@ -22,7 +22,7 @@ export default class IndexController extends Controller {
 
     // Send order details to search service
     const body = {
-      buyerPod: this.solidAuth.podBase,
+      buyerPod: await this.solidAuth.podBase,
       sellerPod: sellerPod,
       buyerWebId: this.solidAuth.webId,
       offeringId: offeringId,

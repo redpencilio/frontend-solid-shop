@@ -1,6 +1,6 @@
 {{page-title "Profile"}}
 <div class="container">
-  <form {{on "submit" this.saveMollieKey}}>
+  <form {{on "submit" this.saveMollieKey}} aria-label="save-mollie-key">
     <div class="mb-3">
       <label for="mollieApiKey" class="form-label">Mollie API key</label>
       <Input @type="text" class="form-control" id="mollieApiKey" name="mollieApiKey" placeholder="my mollie api key"
@@ -16,13 +16,13 @@
     This is needed so we can read from and write to your Solid POD to e.g. read your products and offerings and write
     back the purchases and sales you have made.
   </p>
+  {{#if this.success}}
+    <div class="alert alert-success">{{this.success}}</div>
+  {{/if}}
   <BsTab as |tab|>
     <br>
     <tab.pane @title="CSS">
-      {{#if this.success}}
-        <div class="alert alert-success">{{this.success}}</div>
-      {{/if}}
-      <form {{on "submit" this.loginCSS}}>
+      <form {{on "submit" this.loginCSS}} aria-label="css-login">
         <div class="mb-3">
           <label for="cssEmail" class="form-label">CSS Email</label>
           <Input @type="email" class="form-control" id="cssEmail" name="cssEmail" placeholder="Your email"
@@ -42,7 +42,7 @@
       </form>
     </tab.pane>
     <tab.pane @title="ESS">
-      <p>Currently not supported yet, but will be added later.</p>
+      <button type="button" class="btn btn-success" id="login-ess-button" {{on "click" this.loginESS}}>Login</button>
     </tab.pane>
   </BsTab>
 </div>

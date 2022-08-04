@@ -55,6 +55,9 @@ services:
     environment:
       NODE_ENV: "development"
       BROKER_WEB_ID: "https://broker.mu/"
+      ESS_CLIENT_ID: "your application's client id"
+      ESS_CLIENT_SECRET: "your application's client secret"
+      ESS_IDP: "https://login.inrupt.com"
     links:
       - database:database
     volumes:
@@ -62,8 +65,8 @@ services:
   mu-search:
     # image: semtech/mu-search:0.8.0-beta.3
     build:
-        context: ../mu-search
-        dockerfile: Dockerfile
+      context: ../mu-search
+      dockerfile: Dockerfile
     links:
       - database:database
       - elasticsearch:elasticsearch

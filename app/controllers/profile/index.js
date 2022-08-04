@@ -2,6 +2,7 @@ import { inject as service } from '@ember/service';
 import { action } from '@ember/object';
 import Controller from '@ember/controller';
 import { tracked } from '@glimmer/tracking';
+import { universalAccess } from '@inrupt/solid-client';
 
 export default class ProfileIndexController extends Controller {
   @service solidAuth;
@@ -85,5 +86,62 @@ export default class ProfileIndexController extends Controller {
     document.getElementById('login-css-button').innerHTML = 'Login';
 
     this.success = 'You have successfully authenticated with your CSS POD!';
+  }
+
+  @action
+  async loginESS(event) {
+    event.preventDefault();
+    this.success = null;
+
+    document.getElementById('login-ess-button').disabled = true;
+    document.getElementById('login-ess-button').innerHTML = 'Logging in...';
+
+    // Get ESS WebID from backend.
+    const response = await fetch(`/auth/ess/webId`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+    const { webId } = await response.json();
+    const podBase = await this.solidAuth.podBase;
+
+    const productsAccess = universalAccess.setAgentAccess(
+      `${podBase}private/tests/my-products.ttl`,
+      webId,
+      { read: true, write: true },
+      { fetch: this.solidAuth.session.fetch }
+    );
+    const offeringsAccess = universalAccess.setAgentAccess(
+      `${podBase}private/tests/my-offerings.ttl`,
+      webId,
+      { read: true, write: true },
+      { fetch: this.solidAuth.session.fetch }
+    );
+    await Promise.all([productsAccess, offeringsAccess]);
+
+    // Now, save the IDP type (ESS) to the triple store.
+    const body = {
+      clientWebId: this.solidAuth.webId,
+      idpType: 'ess',
+    };
+    const formBody = [];
+    for (const property in body) {
+      const encodedKey = encodeURIComponent(property);
+      const encodedValue = encodeURIComponent(body[property]);
+      formBody.push(`${encodedKey}=${encodedValue}`);
+    }
+    await fetch(`/profile/credentials`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+      },
+      body: formBody.join('&'),
+    });
+
+    document.getElementById('login-ess-button').disabled = false;
+    document.getElementById('login-ess-button').innerHTML = 'Login';
+
+    this.success = 'You have successfully authenticated with your ESS POD!';
   }
 }
