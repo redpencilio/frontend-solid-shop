@@ -24,6 +24,10 @@
     <label for="legalName" class="form-label">Legal name seller</label>
     <Input @type="text" class="form-control" id="legalName" name="legalName" placeholder="your name" @value={{this.legalName}} />
   </div>
+  <div class="mb-3">
+    <label for="picture" class="form-label">Picture</label>
+    <input type="file" class="form-control" id="picture" name="picture">
+  </div>
   <button type="submit" class="btn btn-success">Save</button>
 </form>
 {{outlet}}

@@ -1,5 +1,5 @@
 {{page-title "Edit"}}
-<form {{on "submit" this.save}} class="container">
+<form {{on "submit" this.save}} aria-label="properties-form" class="container">
   <h1>Edit {{this.model.name}}</h1>
   <div class="mb-3">
     <label for="name" class="form-label">Name</label>
@@ -12,5 +12,13 @@
            @value={{this.model.description}} />
   </div>
 
+  <button type="submit" class="btn btn-success">Save</button>
+</form>
+
+<form {{on "submit" this.savePicture}} aria-label="picture-form" class="container">
+  <div class="mb-3">
+    <label for="picture" class="form-label">Picture</label>
+    <input type="file" class="form-control" id="picture" name="picture">
+  </div>
   <button type="submit" class="btn btn-success">Save</button>
 </form>

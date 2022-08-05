@@ -8,6 +8,7 @@ export default class ProductsEditRoute extends Route {
   async model({ id }) {
     await this.solidAuth.ensureLogin();
     await this.store.fetchGraphForType('product');
+    await this.store.fetchGraphForType('offering');
     return this.store.peekInstance('product', id);
   }
 }

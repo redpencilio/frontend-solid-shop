@@ -11,9 +11,20 @@ export default class ProductsNewController extends Controller {
   async save(event) {
     event.preventDefault();
 
+    // First, save the uploaded picture to the file-service.
+    const formData = new FormData();
+    formData.append('file', event.target.elements['picture'].files[0]);
+    const response = await fetch('/files', {
+      method: 'POST',
+      body: formData,
+    });
+    const json = await response.json();
+    const pictureUrl = json.links.self;
+
     const product = this.store.create('product', {
       name: this.name,
       description: this.description,
+      image: pictureUrl,
     });
 
     // Immediately add a new offering for the product.

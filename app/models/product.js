@@ -17,6 +17,9 @@ export default class Product extends SemanticModel {
   @string()
   description;
 
+  @string({ predicate: 'http://schema.org/image' })
+  image;
+
   @hasMany({
     model: 'offering',
     predicate: 'http://purl.org/goodrelations/v1#includes',
