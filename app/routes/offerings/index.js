@@ -7,6 +7,7 @@ export default class OfferingsIndexRoute extends Route {
 
   async model() {
     await this.solidAuth.ensureLogin();
+    await this.store.fetchGraphForType('product');
     await this.store.fetchGraphForType('offering');
     return this.store.all('offering');
   }

@@ -25,6 +25,15 @@
             "priceCurrency": "http://purl.org/goodrelations/v1#hasCurrency",
             "price": "http://purl.org/goodrelations/v1#hasCurrencyValue"
           }
+        },
+        "product": {
+          "via": "http://purl.org/goodrelations/v1#includes",
+          "rdf_type": "http://purl.org/goodrelations/v1#ProductOrService",
+          "properties": {
+            "name": "http://purl.org/goodrelations/v1#name",
+            "description": "http://purl.org/goodrelations/v1#description",
+            "image": "http://schema.org/image"
+          }
         }
       },
       "mappings": {
@@ -42,6 +51,15 @@
             "type": "double"
           },
           "price.priceCurrency": {
+            "type": "text"
+          },
+          "product.name": {
+            "type": "text"
+          },
+          "product.description": {
+            "type": "text"
+          },
+          "product.image": {
             "type": "text"
           }
         }

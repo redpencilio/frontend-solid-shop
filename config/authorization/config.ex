@@ -29,6 +29,19 @@ defmodule Acl.UserGroups.Config do
                       ]
                     } } ] },
 
+      # // PUBLIC IMAGES
+      %GroupSpec{
+        name: "images",
+        useage: [:read, :write],
+        access: %AlwaysAccessible{},
+        graphs: [ %GraphSpec{
+          graph: "http://solid-shop.org/graphs/images",
+          constraint: %ResourceConstraint{
+            resource_types: [
+              "http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#FileDataObject"
+            ]
+          } } ] },
+
       # // CLEANUP
       #
       %GraphCleanup{

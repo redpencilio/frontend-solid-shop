@@ -2,7 +2,8 @@ defmodule Dispatcher do
   use Matcher
   define_accept_types [
     html: [ "text/html", "application/xhtml+html" ],
-    json: [ "application/json", "application/vnd.api+json" ]
+    json: [ "application/json", "application/vnd.api+json" ],
+    img: [ "image/jpg", "image/jpeg", "image/png" ],
   ]
 
   @any %{}
@@ -24,8 +25,8 @@ defmodule Dispatcher do
   end
 
   match "/query/*path", @json do
-      Proxy.forward conn, path, "http://search/query/"
-    end
+    Proxy.forward conn, path, "http://search/query/"
+  end
 
   match "/buy/*path", @json do
     Proxy.forward conn, path, "http://search/buy/"
@@ -54,6 +55,15 @@ defmodule Dispatcher do
   match "/auth/*path", @json do
     Proxy.forward conn, path, "http://search/auth/"
   end
+
+  post "/files/*path", %{ accept: %{ img: true, json: true } } do
+    Proxy.forward conn, path, "http://file/files/"
+  end
+
+  get "/files/*path", %{ accept: %{ img: true, json: true } } do
+    Proxy.forward conn, path, "http://file/files/"
+  end
+  # no delete method supported because otherwise everyone could delete all files.
 
   match "/*_", %{ last_call: true } do
     send_resp( conn, 404, "Route not found.  See config/dispatcher.ex" )
