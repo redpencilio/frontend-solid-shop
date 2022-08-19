@@ -46,6 +46,12 @@ Make use of the many generators for code, try `ember help generate` for more det
 
 Specify what it takes to deploy your app.
 
+## Contribution
+
+We make use of [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/).
+
+When making changes to a pull request, we prefer to update the existing commits with a rebase instead of appending new commits.
+
 ## Further Reading / Useful Links
 
 * [ember.js](https://emberjs.com/)
