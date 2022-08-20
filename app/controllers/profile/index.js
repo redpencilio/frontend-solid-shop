@@ -26,7 +26,7 @@ export default class ProfileIndexController extends Controller {
       const encodedValue = encodeURIComponent(body[property]);
       formBody.push(`${encodedKey}=${encodedValue}`);
     }
-    await fetch(`/buy/key`, {
+    await fetch(`/key`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
@@ -74,7 +74,7 @@ export default class ProfileIndexController extends Controller {
       const encodedValue = encodeURIComponent(body[property]);
       formBody.push(`${encodedKey}=${encodedValue}`);
     }
-    await fetch(`/profile/credentials`, {
+    await fetch(`/auth/credentials`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
@@ -131,7 +131,7 @@ export default class ProfileIndexController extends Controller {
       const encodedValue = encodeURIComponent(body[property]);
       formBody.push(`${encodedKey}=${encodedValue}`);
     }
-    await fetch(`/profile/credentials`, {
+    await fetch(`/auth/credentials`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
